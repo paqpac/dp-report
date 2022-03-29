@@ -1,0 +1,31 @@
+<%= form_with url: dps_path, local: true do |f| %>
+  <h1>不良品報告</h1>
+  <div class="field">
+   <%= f.label :name, "商品名" %>
+   <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :product_number, "品番_色(半角英数値)" %>
+    <%= f.text_field :product_number %>
+  </div>
+  <div class="field">
+    <%= f.label :jan, "JAN(半角数値)" %>
+    <%= f.text_field :jan %>
+  </div>
+  <div class="field">
+    <%= f.label :category, "不良の種類(リストから選択)" %>
+    <%= f.collection_select :category, Category.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :content, "不良の内容" %>
+    <%= f.text_field :content %>
+  </div>
+  <div class="field">
+    <%= f.label :image, "画像" %>
+    <%= f.text_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "報告する" %>
+  </div>
+<% end %>
