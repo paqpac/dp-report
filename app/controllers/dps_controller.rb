@@ -2,7 +2,7 @@ class DpsController < ApplicationController
   before_action :authenticate_user!, except: :index
 
   def index
-    # @dps = Dps.all
+    @dps = Dp.all
   end
 
   def new
@@ -10,13 +10,19 @@ class DpsController < ApplicationController
   end
 
   def create
-    @dp = Dp.create(dp_params)
-    redirect_to root_path
+    @dp = Dp.new(dp_params)
+    if @dp.valid?
+      @dp.save
+      redirect_to root_path
+    else
+      # @dp = Dp.new(dp_params)
+      render :new
+    end
   end
 
   private
 
   def dp_params
-    params.permit(:name, :product_number, :jan, :category, :content, :image).merge(user_id: current_user.id)
+    params.require(:dp).permit(:name, :product_number, :jan, :category, :content, :image, :client).merge(user_id: current_user.id)
   end
 end

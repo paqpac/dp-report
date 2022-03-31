@@ -4,6 +4,7 @@ class CreateDps < ActiveRecord::Migration[6.0]
       t.string     :name          , null: false
       t.string     :product_number, null: false
       t.string     :jan
+      t.string     :client
       t.integer    :category      , null: false
       t.text       :content
       t.text       :image

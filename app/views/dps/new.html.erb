@@ -1,4 +1,5 @@
-<%= form_with url: dps_path, local: true do |f| %>
+<%= form_with model: @dp, url: dps_path, local: true do |f| %>
+  <%= render 'error_messages', model: @dp %>
   <h1>不良品報告</h1>
   <div class="field">
    <%= f.label :name, "商品名" %>
@@ -22,10 +23,11 @@
   </div>
   <div class="field">
     <%= f.label :image, "画像" %>
-    <%= f.text_field :image %>
+    <%= f.file_field :image, id:"dp-image" %>
   </div>
 
   <div class="actions">
     <%= f.submit "報告する" %>
   </div>
 <% end %>
+<%= link_to 'TOPページへ戻る', root_path %>
