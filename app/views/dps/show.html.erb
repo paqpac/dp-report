@@ -1,0 +1,70 @@
+<div class="dp-show">
+  <div class="dp-box">
+    <h2 class="dp-name">
+      <%= @dp.name %>
+    </h2>
+    <h2 class="dp-product-number">
+      <%= @dp.product_number %>
+    </h2>
+    <div class="dp-img-content">
+      <%= image_tag @dp.image, class:"dp-box-img" if @dp.image.attached? %>
+    </div>
+    
+    <table class="detail-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">JAN</th>
+          <td class="detail-value"><%= @dp.jan_code %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">取引先名</th>
+          <td class="detail-value"><%= @dp.client %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">不良品確認日</th>
+          <td class="detail-value"><%= @dp.confirm_date %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">情報元</th>
+          <td class="detail-value"><%= @dp.source.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">不良品発生日</th>
+          <td class="detail-value"><%= @dp.occurrence_date %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">ロットナンバー</th>
+          <td class="detail-value"><%= @dp.lotnumber %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">返品有無</th>
+          <td class="detail-value"><%= @dp.return.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">不良の種類</th>
+          <td class="detail-value"><%= @dp.category.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">不良の内容</th>
+          <td class="detail-value"><%= @dp.content %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">報告者名</th>
+          <td class="detail-value"><%= @dp.user.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">報告日</th>
+          <td class="detail-value"><%= @dp.created_at %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="toppage-btn">
+      <%= link_to 'TOPページへ戻る', root_path %>
+    </div>
+    <% if user_signed_in? && current_user.id == @dp.user_id %>
+      <%= link_to "報告の編集", edit_dp_path(@dp.id), method: :get, class: "dp-blue-btn" %>
+      <%# <p class="or-text"></p> %>
+      <%= link_to "報告の削除", dp_path(@dp.id), method: :delete, data: { confirm: "削除して良いですか？"}, class: "dp-red-btn" %>
+    <% end %>
+  </div>  
+</div>

@@ -3,9 +3,14 @@ class CreateDps < ActiveRecord::Migration[6.0]
     create_table :dps do |t|
       t.string     :name          , null: false
       t.string     :product_number, null: false
-      t.string     :jan
+      t.string     :jan_code
       t.string     :client
-      t.integer    :category      , null: false
+      t.string     :confirm_date
+      t.integer    :source_id     , null: false
+      t.string     :occurrence_date
+      t.string     :lotnumber
+      t.string     :return_id
+      t.integer    :category_id    , null: false
       t.text       :content
       t.text       :image
       t.references :user, null: false, foreign_key: true

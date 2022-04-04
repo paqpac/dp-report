@@ -36,9 +36,14 @@ ActiveRecord::Schema.define(version: 2022_03_30_131041) do
   create_table "dps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "product_number", null: false
-    t.string "jan"
+    t.string "jan_code"
     t.string "client"
-    t.integer "category", null: false
+    t.string "confirm_date"
+    t.integer "source_id", null: false
+    t.string "occurrence_date"
+    t.string "lotnumber"
+    t.string "return_id"
+    t.integer "category_id", null: false
     t.text "content"
     t.text "image"
     t.bigint "user_id", null: false

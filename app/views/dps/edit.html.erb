@@ -1,6 +1,6 @@
-<%= form_with model: @dp, url: dps_path, local: true do |f| %>
+<%= form_with model:@dp, local: true do |f| %>
   <%= render 'error_messages', model: @dp %>
-  <h1>不良品報告</h1>
+  <h1>不良品報告編集</h1>
   <div class="field">
    <%= f.label :name, "商品名" %>
    <%= f.text_field :name %>

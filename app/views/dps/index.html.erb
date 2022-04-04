@@ -1,24 +1,26 @@
-<% if user_signed_in? %>
-  <%= current_user.name %>
-  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to '新規登録', new_user_registration_path %>
-  <%= link_to 'ログイン', new_user_session_path %>
-<% end %>
-<%= link_to '不良品報告する', new_dp_path %>
+<%= render "header" %>
 
-<% @dps.each do |dp| %>
-  <li class='list'>
-    <%= link_to dps_path(dp.id), method: :get do %>
-      <div class='dp-img-content'>
-        <%= image_tag dp.image.variant(resize: '300x300'), class: "dp-img" if dp.image.attached? %>
-      </div>
-      <div class='name'>
-        <%= dp.name %>
-      </div>
-      <div class='product-number'>
-        <%= dp.product_number %>
-      </div>
+<div class="dp-all-lists">
+  <ul class='dp-lists'>
+    <% @dps.each do |dp| %>
+      <li class='list'>
+        <%= link_to dp_path(dp.id), method: :get do %>
+          <div class='dp-img-content'>
+            <%= image_tag dp.image.variant(resize: '300x300'), class: "dp-img" if dp.image.attached? %>
+          </div>
+          <div class='name'>
+            <%= dp.name %>
+          </div>
+          <div class='product-number'>
+            <%= dp.product_number %>
+          </div>
+          <div class='product-number'>
+            <%= dp.created_at.strftime('%Y/%m/%d') %>
+          </div>
+        <% end %>
+      </li>
     <% end %>
-  </li>
-<% end %>
+  </ul>
+</div>
+
+<%= link_to "CSV出力", dps_path(format: :csv), class: "btn btn-secondary" %>

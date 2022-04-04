@@ -7,4 +7,8 @@ class Category < ActiveHash::Base
     {id:4, name: '消費者所以(NO不良)'},
     {id:5, name: 'その他'},
   ]
+
+  include ActiveHash::Associations
+  has_many :dps
+  
 end
