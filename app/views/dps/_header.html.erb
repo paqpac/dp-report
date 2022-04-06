@@ -1,19 +1,26 @@
-<header class='top-page-header'>
-  <div class='dp-header'>
-  不良品報告の部屋
-  </div>  
-  <div class="nav">
-    <ul class='lists-left'>
-      <%= link_to '不良品報告する', new_dp_path %>
-    </ul>
-    <ul class='lists-right'>
-      <% if user_signed_in? %>
-        <li><%= current_user.name %></li>
-        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-      <% else %>
-        <li><%= link_to '新規登録', new_user_registration_path %></li>
-        <li><%= link_to 'ログイン', new_user_session_path %><li>
+<header>
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <a class="navbar-brand">Defective Product Report(不良品報告)</a>
+      
+      <%= form_with(url: search_dps_path, local: true, method: :get, class: "d-flex") do |form| %>
+        <%= form.text_field :keyword, placeholder: "検索", class: "form-control me-2" %>
+        <%= form.submit "Search", class: "btn btn-outline-success" %>
       <% end %>
-    </ul>
-  </div>
+
+    </div>
+    <div class="container-fluid">
+      <% if user_signed_in? %>
+        <%= current_user.name %>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'アカウント新規登録', new_user_registration_path %>
+        <%= link_to 'ログイン', new_user_session_path %>
+      <% end %>
+      <p>
+        <%= link_to('不良品報告する', new_dp_path, {class: "btn btn-primary my-2"}) %>
+      </p>
+
+    </div>
+  </nav>
 </header>

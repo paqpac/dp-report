@@ -63,7 +63,6 @@
     </div>
     <% if user_signed_in? && current_user.id == @dp.user_id %>
       <%= link_to "報告の編集", edit_dp_path(@dp.id), method: :get, class: "dp-blue-btn" %>
-      <%# <p class="or-text"></p> %>
       <%= link_to "報告の削除", dp_path(@dp.id), method: :delete, data: { confirm: "削除して良いですか？"}, class: "dp-red-btn" %>
     <% end %>
   </div>  

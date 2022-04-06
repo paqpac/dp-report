@@ -28,17 +28,21 @@ class DpsController < ApplicationController
   end
 
   def update
-    dp = Dp.find(params[:id])
-    if dp.update(dp_params)
-    redirect_to dp_path
+    @dp = Dp.find(params[:id])
+    if @dp.update(dp_params)
+      redirect_to dp_path
     else
-      render :update
+      render :edit
     end
   end
 
   def destroy
     @dp = Dp.find(params[:id])
     @dp.destroy!
+  end
+
+  def search
+    @dps = Dp.search(params[:keyword])
   end
 
   private
