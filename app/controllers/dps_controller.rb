@@ -48,6 +48,6 @@ class DpsController < ApplicationController
   private
 
   def dp_params
-    params.require(:dp).permit(:name, :product_number, :jan_code, :category_id, :content, :image, :client, :source_id, :return_id, :confirm_date, :occurrence_date, :lotnumber).merge(user_id: current_user.id)
+    params.require(:dp).permit(:name, :product_number, :jan_code, :category_id, :content, :image, :client, :source_id, :return_id, :confirm_date, :occurrence_date, :lotnumber, :summary).merge(user_id: current_user.id)
   end
 end

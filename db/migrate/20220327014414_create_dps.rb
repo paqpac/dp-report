@@ -11,6 +11,7 @@ class CreateDps < ActiveRecord::Migration[6.0]
       t.string     :lotnumber
       t.string     :return_id
       t.integer    :category_id    , null: false
+      t.text       :summary        , null: false
       t.text       :content
       t.text       :image
       t.references :user, null: false, foreign_key: true
