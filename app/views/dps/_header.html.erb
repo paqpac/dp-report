@@ -1,0 +1,26 @@
+<header>
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <a class="navbar-brand">Defective Product Report(不良品報告)</a>
+      
+      <%= form_with(url: search_dps_path, local: true, method: :get, class: "d-flex") do |form| %>
+        <%= form.text_field :keyword, placeholder: "検索", class: "form-control me-2" %>
+        <%= form.submit "Search", class: "btn btn-outline-success" %>
+      <% end %>
+
+    </div>
+    <div class="container-fluid">
+      <% if user_signed_in? %>
+        <%= current_user.name %>
+        <%= link_to('ログアウト', destroy_user_session_path, {class: "text-decoration-none text-reset", method: :delete}) %>
+      <% else %>
+        <%= link_to('アカウント新規登録', new_user_registration_path, {class: "text-decoration-none text-reset"}) %>
+        <%= link_to('ログイン', new_user_session_path, {class: "text-decoration-none text-reset"}) %>
+      <% end %>
+      <p>
+        <%= link_to('不良品報告する', new_dp_path, {class: "btn btn-outline-dark my-2"}) %>
+      </p>
+
+    </div>
+  </nav>
+</header>
