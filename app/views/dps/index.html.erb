@@ -15,7 +15,7 @@
                 <% end %>
                 <h5 class="card-title name"><%= dp.name %></h5>
                 <h5 class="card-title product"><%= dp.product_number %></h5>
-                <p class="card-text "><%= dp.summary %></p>
+                <p class="card-text text-truncate"><%= dp.summary %></p>
                 <small class="card-text"><%= dp.created_at.strftime('%Y/%m/%d') %></small>
               <% end %>  
             </div>  
@@ -24,8 +24,8 @@
       </div>
     </div>
   </div>
-
 </main>
+
 <footer class="text-muted py-5">
   <div class="container">
     <%= link_to "CSV出力", dps_path(format: :csv), class: "btn btn-secondary" %>

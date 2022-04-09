@@ -1,13 +1,19 @@
-<div class="dp-show">
-  <div class="dp-box">
+<%= render "header" %>
+
+<div class="container">
+  <div class="container-md">
     <h2 class="dp-name">
       <%= @dp.name %>
     </h2>
     <h2 class="dp-product-number">
       <%= @dp.product_number %>
     </h2>
-    <div class="dp-img-content">
-      <%= image_tag @dp.image, class:"dp-box-img" if @dp.image.attached? %>
+    <div class="zoom">
+      <% if @dp.image.attached? %>
+        <%= link_to(@dp.image, {class: "zoom"}) do %>
+        <%= image_tag @dp.image, width: 200 %>
+        <% end %>
+      <% end %>
     </div>
     
     <table class="detail-table">
@@ -63,11 +69,11 @@
       </tbody>
     </table>
     <div class="toppage-btn">
-      <%= link_to 'TOPページへ戻る', root_path %>
+      <%= link_to('TOPページへ戻る', root_path, {class: "btn btn-outline-dark my-4"}) %>
     </div>
     <% if user_signed_in? && current_user.id == @dp.user_id %>
-      <%= link_to "報告の編集", edit_dp_path(@dp.id), method: :get, class: "dp-blue-btn" %>
-      <%= link_to "報告の削除", dp_path(@dp.id), method: :delete, data: { confirm: "削除して良いですか？"}, class: "dp-red-btn" %>
+      <%= link_to("報告の編集", edit_dp_path(@dp.id), {method: :get, class: "btn btn-outline-dark my-4"}) %>
+      <%= link_to("報告の削除", dp_path(@dp.id), {method: :delete, class: "btn btn-outline-dark btn-sm my-4", data: {confirm: "削除して良いですか？"}}) %>
     <% end %>
   </div>  
 </div>
