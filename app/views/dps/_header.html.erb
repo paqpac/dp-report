@@ -7,10 +7,10 @@
       <% end %>
       <%= form_with(url: search_dps_path, local: true, method: :get, class: "d-flex") do |form| %>
         <%= form.text_field :keyword, placeholder: "検索", class: "form-control me-2" %>
-        <%= form.submit "Search", class: "btn btn-outline-success" %>
+        <%= form.submit "Search", id: "keyword", class: "btn btn-outline-success", autocomplete: "off" %>
       <% end %>
-
     </div>
+
     <div class="container-fluid">
       <% if user_signed_in? %>
         <%= current_user.name %>

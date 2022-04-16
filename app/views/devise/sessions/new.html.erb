@@ -12,7 +12,7 @@
             <%= f.label :eメールアドレス%>
           </div>
           <div class='field-input'>
-            <%= f.email_field :email, autofocus: true%>
+            <%= f.email_field :email %>
           </div>
           <div class='field'>
             <div class='field-label'>
@@ -28,6 +28,9 @@
           </div>
         </div>
       <% end %>
+      <div class="toppage-btn">
+        <%= link_to('TOPページへ戻る', root_path, {class: "btn btn-outline-dark my-3 "}) %>
+      </div>      
     </div>
   </div>
 </div>

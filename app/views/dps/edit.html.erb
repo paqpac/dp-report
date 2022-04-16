@@ -45,12 +45,8 @@
           <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"form-control"}) %>
         </div>
         <div class="form-label">
-          <%= f.label :summary, "不良の内容(要約)" %><span class="text-danger"> ※必須</span>
+          <%= f.label :summary, "不良の内容" %><span class="text-danger"> ※必須</span>
           <%= f.text_area :summary, class: "form-control ", placeholder: "例)アジャスターが付いてなかった" %>
-        </div>
-        <div class="form-label">
-          <%= f.label :content, "不良の詳細内容" %>
-          <%= f.text_area :content, class: "form-control ", placeholder: "※詳細内容を記入してください" %>
         </div>
         <div class="form-label">
           <%= f.label :image, "画像" %>
