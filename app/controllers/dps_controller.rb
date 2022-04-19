@@ -3,8 +3,12 @@ class DpsController < ApplicationController
   before_action :params_id, except: [:index, :new, :create, :search]  
   before_action :move_to_index, except: [:index,:new, :create, :show, :search]
 
+  include Pagy::Backend
+
   def index
-    @dps = Dp.all.order("created_at DESC")
+    # @dps = Dp.all.order("created_at DESC")
+    @pagy,@dps = pagy(Dp.all.order(created_at: "DESC"), items: 8)
+    
   end
 
   def new
@@ -16,7 +20,6 @@ class DpsController < ApplicationController
     if @dp.save
       redirect_to root_path
     else
-      # @dp = Dp.new(dp_params)
       render :new
     end
   end
