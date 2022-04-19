@@ -13,9 +13,9 @@ CSV.generate do |csv|
       dp.source_id,
       dp.occurrence_date,
       dp.lotnumber,
-      dp.return_id,
+      dp.return.name,
       dp.category.name,
-      dp.content,
+      dp.summary,
       dp.user.name
     ]
     csv << column_values

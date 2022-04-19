@@ -2,3 +2,8 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
+ja:
+  views:
+    pagination:
+      prev: "前"
+      next: "後"

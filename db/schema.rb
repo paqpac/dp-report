@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 2022_03_30_131041) do
     t.string "return_id"
     t.integer "category_id", null: false
     t.text "summary", null: false
-    t.text "content"
     t.text "image"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

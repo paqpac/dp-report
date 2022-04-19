@@ -1,8 +1,14 @@
 class DpsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :params_id, except: [:index, :new, :create, :search]  
+  before_action :move_to_index, except: [:index,:new, :create, :show, :search]
+
+  include Pagy::Backend
 
   def index
-    @dps = Dp.all.order("created_at DESC")
+    # @dps = Dp.all.order("created_at DESC")
+    @pagy,@dps = pagy(Dp.all.order(created_at: "DESC"), items: 8)
+    
   end
 
   def new
@@ -14,21 +20,17 @@ class DpsController < ApplicationController
     if @dp.save
       redirect_to root_path
     else
-      # @dp = Dp.new(dp_params)
       render :new
     end
   end
 
   def show
-    @dp = Dp.find(params[:id])
   end
 
   def edit
-    @dp  = Dp.find(params[:id])
   end
 
   def update
-    @dp = Dp.find(params[:id])
     if @dp.update(dp_params)
       redirect_to dp_path
     else
@@ -37,7 +39,6 @@ class DpsController < ApplicationController
   end
 
   def destroy
-    @dp = Dp.find(params[:id])
     @dp.destroy!
   end
 
@@ -48,6 +49,16 @@ class DpsController < ApplicationController
   private
 
   def dp_params
-    params.require(:dp).permit(:name, :product_number, :jan_code, :category_id, :content, :image, :client, :source_id, :return_id, :confirm_date, :occurrence_date, :lotnumber, :summary).merge(user_id: current_user.id)
+    params.require(:dp).permit(:name, :product_number, :jan_code, :category_id, :image, :client, :source_id, :return_id, :confirm_date, :occurrence_date, :lotnumber, :summary).merge(user_id: current_user.id)
+  end
+
+  def params_id
+    @dp = Dp.find(params[:id])
+  end
+  
+  def move_to_index
+    unless user_signed_in? && current_user.id == @dp.user_id
+      redirect_to root_path
+    end
   end
 end
