@@ -7,7 +7,7 @@ class DpsController < ApplicationController
 
   def index
     # @dps = Dp.all.order("created_at DESC")
-    @pagy,@dps = pagy(Dp.all.order(created_at: "DESC"), items: 8)
+    @pagy,@dps = pagy(Dp.all.order(created_at: "DESC"), items: 10)
     
   end
 

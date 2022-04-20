@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <%= link_to  root_path, {class:"navbar-brand"} do %>
         <%= image_tag "dp-r.png" %>
-        Defective Product Report(不良品報告)
+        <div class="">Defective Product Report(不良品報告)</div>
       <% end %>
       <%= form_with(url: search_dps_path, local: true, method: :get, class: "d-flex") do |form| %>
         <%= form.text_field :keyword, placeholder: "検索", class: "form-control me-2" %>
@@ -12,17 +12,18 @@
     </div>
 
     <div class="container-fluid">
-      <% if user_signed_in? %>
-        <%= current_user.name %>
-        <%= link_to('ログアウト', destroy_user_session_path, {class: "text-decoration-none text-reset", method: :delete}) %>
-      <% else %>
-        <%= link_to('アカウント新規登録', new_user_registration_path, {class: "text-decoration-none text-reset"}) %>
-        <%= link_to('ログイン', new_user_session_path, {class: "text-decoration-none text-reset"}) %>
-      <% end %>
+      <div class="account">
+        <% if user_signed_in? %>
+          <%= current_user.name %>
+          <%= link_to('ログアウト', destroy_user_session_path, {class: "text-decoration-none text-reset", method: :delete}) %>
+        <% else %>
+          <%= link_to('アカウント新規登録', new_user_registration_path, {class: "text-decoration-none text-reset"}) %>
+          <%= link_to('ログイン', new_user_session_path, {class: "text-decoration-none text-reset"}) %>
+        <% end %>
+      </div>
       <p>
         <%= link_to('不良品報告する', new_dp_path, {class: "btn btn-outline-dark my-2"}) %>
       </p>
-
     </div>
   </nav>
 </header>
